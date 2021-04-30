@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="toggleSidenav.emit()"
+    *ngIf="isHandset"
+  >
+    <mat-icon aria-label="Sidenav toggle icon">menu</mat-icon>
+  </button>
+  <ng-container *ngIf="isAuthenticated; then buttonLogout; else buttonLogin">
+  </ng-container>
+  <ng-template #buttonLogin>
+    <button
+      type="button"
+      aria-label="Login"
+      mat-icon-button
+      (click)="login.emit()"
+      *ngIf="isAuthenticated === false"
+    >
+      <mat-icon aria-label="Login icon">login</mat-icon>
+    </button>
+  </ng-template>
+  <ng-template #buttonLogout>
+    <button
+      type="button"
+      aria-label="Logout"
+      mat-icon-button
+      (click)="logout.emit()"
+      *ngIf="isAuthenticated === true"
+    >
+      <mat-icon aria-label="Logout icon">logout</mat-icon>
+    </button>
+  </ng-template>
+  <span>{{ title }}</span>
+</mat-toolbar>
